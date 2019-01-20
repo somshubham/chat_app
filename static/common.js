@@ -40,6 +40,7 @@ function chat_main(){
     if($.trim(message) == '') {
       return false;
     }
+    conversation(message)
     $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
     $('.message-input input').val(null);
     $('.contact.active .preview').html('<span>You: </span>' + message);
@@ -59,10 +60,10 @@ function chat_main(){
   });
 }
 /* global firedb, device_info*/
-function db_con(){
-  conversation(firedb)
-  // writeUserData('1234','som','som@gmail.com','uiop/io.png')
-}
+// function db_con(){
+//   // conversation()
+//   // writeUserData('1234','som','som@gmail.com','uiop/io.png')
+// }
 
 
 function writeUserData(userId, name, email, imageUrl) {
@@ -73,10 +74,10 @@ function writeUserData(userId, name, email, imageUrl) {
     profile_picture : imageUrl
   });
 }
-    
-function conversation(database){
+
+function conversation(msg){
   // 7008281981-9776135971
-  usersRef = database.ref("conversation");
+  usersRef = firedb.ref("conversation");
   // conversation
   sender = "7008281981"
   receiver = "9776135971" 
@@ -92,7 +93,6 @@ function conversation(database){
   var timeStamp = moment(currentDate).format('MM/DD/YYYY h:mm a');
   console.log(timeStamp); // 08/20/2014 3:30 pm
   var mac_id = $('#mac_id').attr('value')
-  msg = "hello som."
   usersRef.child(target).push({
     'sender': sender,
     'receiver': receiver,
@@ -106,7 +106,7 @@ function conversation(database){
 
 function login(){
   var provider = new firebase.auth.GoogleAuthProvider();
-  
+
   firebase.auth().signInWithPopup(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = result.credential.accessToken;
