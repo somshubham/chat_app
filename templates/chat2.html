@@ -12,7 +12,7 @@
 		<div id="profile">
 			<div class="wrap">
 				<img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-				<p>Mike Ross</p>
+				<p>som</p>
 				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
 				<div id="status-options">
 					<ul>
@@ -201,11 +201,19 @@
 		<input type="hidden" value="{{mac_id}}" id="mac_id">
 	</div>
 </div>
+<!-- <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script> -->
 <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-auth.js"></script> -->
+<!-- <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-database.js"></script> -->
+<!-- <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-firestore.js"></script> -->
+<!-- <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-messaging.js"></script> -->
+<!-- <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-functions.js"></script> -->
+<script src="static/common.js"></script>
 <script>
 	/* global firebase */
 	/* export firedb */
-	var config = {
+//   var firedb = config_firebase()
+  var config = {
     apiKey: "AIzaSyCBGaNN2p36GNVznN5CJM3qTfYQz6U510A",
     authDomain: "chatio-a5bcd.firebaseapp.com",
     databaseURL: "https://chatio-a5bcd.firebaseio.com",
@@ -214,16 +222,42 @@
     messagingSenderId: "726615260743"
   };
   firebase.initializeApp(config);
-  var firedb = firebase.database();
+  console.log("firebase.auth()")
+  console.log("testtetsetstet")
+  console.log(firebase.auth())
+//   console.log(firebase.auth().O)
+//   console.log(firebase.auth()['currentUser']['displayName'])
+//   var firedb = firebase.database();
+//   console.log(firedb)
+render_chat()
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.js"></script>
 <script src="static/device_info.js"></script>
-<script src="static/common.js"></script>
 <script>
 	/* export device_info */
 	var device_info = deviceData() 
 	chat_main()
-	db_con()
+	// db_con()
+	if(firebase.auth()){
+		console.log('is working')
+		console.log(firebase.auth().getUid())
+		// console.log(firebase.auth()['currentUser'].displayName)
+		// debugger
+		console.log(firebase.auth())
+	}
+</script>
+
+<script>
+// $(function(){
+	// if(firebase.auth()){
+	// 	console.log('is working')
+	// 	console.log(firebase.auth().getUid())
+	// 	debugger
+	// 	console.log(firebase.auth())
+	// }
+// })
+
+
 </script>
 </body>
 </html>

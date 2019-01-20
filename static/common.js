@@ -74,9 +74,10 @@ function writeUserData(userId, name, email, imageUrl) {
     profile_picture : imageUrl
   });
 }
-
+/* global firedb, device_info*/
 function conversation(msg){
   // 7008281981-9776135971
+  console.log("comming to the conversation msg")
   usersRef = firedb.ref("conversation");
   // conversation
   sender = "7008281981"
@@ -123,4 +124,170 @@ function login(){
     var credential = error.credential;
     // ...
   });
+}
+
+
+$(function(){
+  // function test(){
+    $('.google_auth').on("click",function(){
+      console.log('test')
+      // debugger
+      googleSignin()
+      // $.ajax({
+      //   url : "/login",
+      //   type: 'POST',
+      //   dataType:"json",
+      //   data: {user: "user"}
+      // }).done(function(data){
+      //   console.log(data)
+      //   console.log("data")
+      // })
+      console.log("testing ,,,,,,,,,,,,,,,")
+      // render_chat()
+      // $.ajax({
+      //   url: "login",
+      //   type: 'POST',
+      //   dataType:"json",
+      //   // contentType: 'application/json;charset=UTF-8',
+      //   data: {user: "user"}
+      // }).done(function(){
+      //  console.log(done)
+      // }) 
+    })  
+  // }
+  $('.test').on("click", function(){
+    console.log("testing")
+    $.ajax({
+      url: "/login",
+      type: 'POST',
+      dataType:"json",
+      // contentType: 'application/json;charset=UTF-8',
+      data: {user: "firebase.auth()"}
+    }).done(function(done){
+      console.log(done)
+    }) 
+  })
+
+})
+var provider = new firebase.auth.GoogleAuthProvider();
+
+function googleSignin() {
+   firebase.auth()
+   .signInWithPopup(provider).then(function(result) {
+  //  .signInWithRedirect(provider).then(function(result) {
+      var token = result.credential.accessToken;
+      var user = result.user;
+		
+      console.log(token)
+      console.log(user)
+      console.log(user.uid)
+      render_chat()
+      // console.log(user.email)
+      // console.log(user.displayName)
+      // console.log(user.photoURL)
+      // debugger
+        // debugger
+        // $.ajax({
+        //   url: "/login",
+        //   type: 'POST',
+        //   dataType:"json",
+        //   // contentType: 'application/json;charset=UTF-8',
+        //   data: {user: user}
+        // }).done(function(done){
+        //   console.log(done)
+        // }) 
+        // render_chat(user);
+        // var data = {
+        //   uid: user.uid,
+        //   email: user.email,
+        //   displayName: user.displayName
+        // }
+        var d = ""+user.uid
+        $.ajax({
+          url : "/login",
+          type: 'POST',
+          dataType:"json",
+          data: {
+            user: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            img: user.photoURL
+          }
+        }).done(function(data){
+          console.log(data)
+          console.log("data")
+        })
+
+   }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+		
+      console.log(error.code)
+      console.log(error.message)
+   });
+}
+
+function googleSignout() {
+   firebase.auth().signOut()
+	
+   .then(function() {
+      console.log('Signout Succesfull')
+   }, function(error) {
+      console.log('Signout Failed')  
+   });
+}
+
+// export firebase
+function config_firebase(){
+  var config = {
+    apiKey: "AIzaSyCBGaNN2p36GNVznN5CJM3qTfYQz6U510A",
+    authDomain: "chatio-a5bcd.firebaseapp.com",
+    databaseURL: "https://chatio-a5bcd.firebaseio.com",
+    projectId: "chatio-a5bcd",
+    storageBucket: "chatio-a5bcd.appspot.com",
+    messagingSenderId: "726615260743"
+  };
+  firebase.initializeApp(config);
+  var firedb = firebase.database();
+  console.log(firebase)
+  console.log(firebase.auth())
+  console.log(firebase.auth().getUid())
+  return firedb
+}
+
+function render_chat(){
+
+  console.log("firebase.auth()")
+  console.log(firebase.auth())
+  console.log("firebase.auth()")
+
+  // $.ajax({
+  //   url: "/login",
+  //   type: 'POST',
+  //   dataType:"json",
+  //   // contentType: 'application/json;charset=UTF-8',
+  //   data: {user: firebase.auth()}
+  // }).done(function(done){
+  //   console.log(done)
+
+  // }) 
+  firebase.auth().onAuthStateChanged(user => {
+    console.log("user")
+    console.log("user")
+    console.log("user")
+    console.log("user")
+    console.log(user)
+    if(user){
+  console.log(firebase.auth()['currentUser']['displayName'])
+      // window.location.href = "/chat";
+    }
+      // window.location.href = "/";
+  });
+
+}
+
+
+
+function load_chat(){
+
 }

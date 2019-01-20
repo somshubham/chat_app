@@ -1,3 +1,4 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="/static/login_style.css" type="text/css">
 {% block body %}
 {% if session['logged_in'] %}
@@ -5,7 +6,7 @@
 {% else %}
  
  
-<form action="/login" method="POST">
+<!-- <form action="/login" method="POST"> -->
 	<div class="login">
 		<div class="login-screen">
 			<div class="app-title">
@@ -13,22 +14,42 @@
 			</div>
  
 			<div class="login-form">
-				<div class="control-group">
+				<!-- <div class="control-group">
 				<input type="text" class="login-field" value="" placeholder="username" name="username">
 				<label class="login-field-icon fui-user" for="login-name"></label>
-				</div>
+				</div> -->
  
-				<div class="control-group">
+				<!-- <div class="control-group">
 				<input type="password" class="login-field" value="" placeholder="password" name="password">
 				<label class="login-field-icon fui-lock" for="login-pass"></label>
-				</div>
- 
-                <input type="submit" value="Log in" class="btn btn-primary btn-large btn-block" >
+				</div> -->
+				<!-- <input type="button" value="test" class="test"> -->
+                <input type="submit" value="Log in" class="btn btn-primary btn-large btn-block google_auth" id="google_auth" >
 			    <br>
 			</div>
 		</div>
 	</div>
-</form>
- 
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- </form> -->
+<script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+<script src="static/common.js"></script>
+<script>
+	/* global firebase */
+	/* export firedb */
+  var firedb = config_firebase()
+</script>
+<script>
+	$(function(){
+		if(firebase.auth().getUid()){
+			console.log('is working')
+			debugger
+			window.location.href = "/chat";
+		}
+		else{
+			console.log("please login")
+		}
+	})	
+</script>
 {% endif %}
 {% endblock %}
