@@ -18,7 +18,15 @@ def top_tweets():
 
 @app.route("/chat")
 def chat2():
-    return render_template('chat2.html')
+    mac = get_mac()
+    print('------------------')
+    print(mac)
+    print("userInfo['img']")
+    # print(userInfo['img'])
+    print("userInfo['img']")
+    print('------------------')
+    return render_template('chat2.html', mac_id=mac)
+    # return render_template('chat2.html')
 
 # @app.route("/login")
 # def login():

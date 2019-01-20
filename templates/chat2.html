@@ -7,12 +7,13 @@
 <head>
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link rel="stylesheet" href="static/style2.css">
+</head>
 <div id="frame">
 	<div id="sidepanel">
 		<div id="profile">
 			<div class="wrap">
 				<img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-				<p>som</p>
+				<p class="user_name"></p>
 				<i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
 				<div id="status-options">
 					<ul>
@@ -201,63 +202,17 @@
 		<input type="hidden" value="{{mac_id}}" id="mac_id">
 	</div>
 </div>
-<!-- <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script> -->
 <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
-<!-- <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-auth.js"></script> -->
-<!-- <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-database.js"></script> -->
-<!-- <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-firestore.js"></script> -->
-<!-- <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-messaging.js"></script> -->
-<!-- <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-functions.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.js"></script>
+<script src="static/device_info.js"></script>
 <script src="static/common.js"></script>
 <script>
 	/* global firebase */
-	/* export firedb */
-//   var firedb = config_firebase()
-  var config = {
-    apiKey: "AIzaSyCBGaNN2p36GNVznN5CJM3qTfYQz6U510A",
-    authDomain: "chatio-a5bcd.firebaseapp.com",
-    databaseURL: "https://chatio-a5bcd.firebaseio.com",
-    projectId: "chatio-a5bcd",
-    storageBucket: "chatio-a5bcd.appspot.com",
-    messagingSenderId: "726615260743"
-  };
-  firebase.initializeApp(config);
-  console.log("firebase.auth()")
-  console.log("testtetsetstet")
-  console.log(firebase.auth())
-//   console.log(firebase.auth().O)
-//   console.log(firebase.auth()['currentUser']['displayName'])
-//   var firedb = firebase.database();
-//   console.log(firedb)
-render_chat()
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.js"></script>
-<script src="static/device_info.js"></script>
-<script>
-	/* export device_info */
-	var device_info = deviceData() 
-	chat_main()
-	// db_con()
-	if(firebase.auth()){
-		console.log('is working')
-		console.log(firebase.auth().getUid())
-		// console.log(firebase.auth()['currentUser'].displayName)
-		// debugger
-		console.log(firebase.auth())
-	}
-</script>
-
-<script>
-// $(function(){
-	// if(firebase.auth()){
-	// 	console.log('is working')
-	// 	console.log(firebase.auth().getUid())
-	// 	debugger
-	// 	console.log(firebase.auth())
-	// }
-// })
-
-
+	/* export firedb, device_info */
+  	var firedb = config_firebase()
+    var device_info = deviceData() 
+    chat_main()
+    checkUserSession()
 </script>
 </body>
 </html>
