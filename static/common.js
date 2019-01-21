@@ -129,6 +129,7 @@ function login(){
 
 $(function(){
     $('.google_auth').on("click",function(){
+      console.log("hiiiiiiii")
       googleSignin()
     })
 })

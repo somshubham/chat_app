@@ -15,6 +15,9 @@ app = Flask(__name__)
 def top_tweets():
     return render_template('index.html')
 
+@app.route("/admin")
+def admin():
+    return render_template('admin.html')
 
 @app.route("/chat")
 def chat2():
@@ -27,10 +30,6 @@ def chat2():
     print('------------------')
     return render_template('chat2.html', mac_id=mac)
     # return render_template('chat2.html')
-
-# @app.route("/login")
-# def login():
-#     return render_template('login.html')
 
 @app.route('/')
 def home(userInfo=None):
