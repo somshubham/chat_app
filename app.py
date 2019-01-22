@@ -82,7 +82,7 @@ def logout():
     session['logged_in'] = False
     return home()
 
-@app.route("/admin_home")
+@app.route("/admin")
 def admin_home():
     return render_template('admin_home.html')
 

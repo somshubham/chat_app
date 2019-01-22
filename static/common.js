@@ -41,7 +41,8 @@ function chat_main(){
       return false;
     }
     conversation(message)
-    $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+    // debugger
+    $('<li class="sent"><img src="'+firebase.auth()['currentUser']['photoURL']+'" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
     $('.message-input input').val(null);
     $('.contact.active .preview').html('<span>You: </span>' + message);
     $(".messages").animate({ scrollTop: $(document).height() }, "fast");
@@ -179,9 +180,9 @@ function checkUserSession(){
   console.log(firebase.auth())
   firebase.auth().onAuthStateChanged(user => {
     if(user){
-      console.log(firebase.auth()['currentUser']['displayName'])
       $('.user_name').text(firebase.auth()['currentUser']['displayName'])
       $('#profile-img').attr('src', firebase.auth()['currentUser']['photoURL'])
+      $('.sent img').attr('src', firebase.auth()['currentUser']['photoURL'])
     }else{
       window.location.href = "/";
     }
