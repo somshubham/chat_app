@@ -15,7 +15,7 @@ app = Flask(__name__)
 def top_tweets():
     return render_template('index.html')
 
-@app.route("/admin")
+@app.route("/admin_explore")
 def admin():
     return render_template('admin.html')
 

@@ -34,25 +34,57 @@
 		.main {
 			margin-left: 200px;
 		}
+		.btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+        
+		.btn-file input[type=file] {
+				position: absolute;
+				top: 0;
+				right: 0;
+				min-width: 100%;
+				min-height: 100%;
+				font-size: 100px;
+				text-align: right;
+				filter: alpha(opacity=0);
+				opacity: 0;
+				outline: none;
+				background: white;
+				cursor: inherit;
+				display: block;
+		}
+		
+		#img-upload {
+				width: 100%;
+		}
+		
+		.device_data {
+				font-size: 12px;
+		}
+		
+		.btn-file {
+				background-color: darkgoldenrod;
+		}
+		.container {
+			margin-top: 60px;
+		}
 	</style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<img src="static/img/talk.png" width="50px" class="img-responsive p-1">
-		<a class="navbar-brand" href="javascript:void(0)">Admin</a>
+		<a class="navbar-brand home" href="javascript:void(0)">Admin</a>
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 			<div class="collapse navbar-collapse" id="navb">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="javascript:void(0)">Report</a>
+						<a class="nav-link report" href="javascript:void(0)">Report</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="javascript:void(0)">Explore</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="javascript:void(0)">Disabled</a>
+						<a class="nav-link explore" href="javascript:void(0)">Explore</a>
 					</li>
 				</ul>
 				<ul class="navbar-nav float-right">
@@ -67,20 +99,148 @@
 	<div class="sidenav">
 		<a href="#about">About</a>
 		<a href="#services">Services</a>
-		<a href="#clients">Uses</a>
+		<a href="#clients">User</a>
 		<a href="#contact"></a>
 	</div>
 	<div class="main" style="margin-top:30px">
-		<div class="container">
-			<div class="row">
+		<div class="container p-2">
+			<div class="row home_body p-2">
 					<div class="col-md-4">
-
+						<div class="card bg-secondary text-white m-2">
+							<div class="card-body">
+								Total Number of Users
+								<label class="text-success h2 p-2">10</label>
+							</div>
+						</div>
+						<div class="card bg-secondary text-white m-2">
+							<div class="card-body">Active Users
+								<label class="text-danger h2 p-2">6</label>
+							</div>
+						</div>
 					</div>
 					<div class="col-md-6">
-
+						<div class="card bg-danger text-white m-2">
+							<div class="card-body">
+								<div class="h3">
+									Total number of Report
+										<label class="text-light h2 p-2">1</label>
+								</div>
+									<div>
+										<span class="">
+											<label>Number of Text Msg:</label> 45
+										</span>
+									</div>
+									<div>
+										<span class="">
+											<label>Number of Images:</label> 4
+										</span>
+									</div>
+							</div>
+						</div>
 					</div>
+			</div>
+			<div class="row report_body mx-2 d-none p-2">
+				<div class="text-center">
+						<table class="table">
+								<thead class="thead-dark">
+									<tr>
+										<th>User Id</th>
+										<th>User Name</th>
+										<th>Email</th>
+										<th>Type</th>
+										<th>Content</th>
+										<th>No of Forwards</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>EXXJJJJlHBKJ9203</td>
+										<td>John Doe</td>
+										<td>john@example.com</td>
+										<td>Image</td>
+										<td>
+											<img src="static/img/chat_bg.png" class="img-responsive p-1" width="60px">
+										</td>
+										<td>4</td>
+									</tr>
+								</tbody>
+							</table>
+				</div>
+				
+			</div>
+			<div class="row explore_body mx-2 d-none p-2">
+					<!-- <div class="container"> -->
+							<!-- <div class="row h-100"> -->
+									<div class="col-md-6">
+											<div class="upload_div">
+													<div class="form-group">
+															<div class="bg-dark text-light p-2 text-center mb-2">
+																	<label>Upload Image/ Text</label>
+															</div>
+			
+															<div class="input-group">
+																	<span class="input-group-btn">
+											<span class="btn btn-default btn-file .bg-warning">
+												<i class="fa fa-file mr-1"></i>Choose file <input type="file" id="imgInp">
+											</span>
+																	</span>
+																	<input type="text" class="form-control" readonly>
+															</div>
+															<img id='img-upload' class="rounded" />
+													</div>
+											</div>
+											<div class="h-20 bg-dark user_blocking_control p-2">
+													<div class="col-md-12 p-2">
+															<button type="button" class="btn btn-danger m-2">Block Msg</buttons>
+									<button type="button" class="btn btn-success m-2">Unblock Msg</button>
+													</div>
+													<div class="col-md-12">
+															<textarea class="text-light block_msg bg-dark w-100 mt-2 mb-2" placeholder="Violation Text...."></textarea>
+															<button type="button" class="btn btn-secondary mt-2">Submit</button>
+													</div>
+			
+											</div>
+			
+									</div>
+									<div class="col-md-4 bg-dark p-3">
+											<div class="text-center text-light m-2">File Details</div>
+											<label class="text-light mt-2">User</label><br>
+											<text class="user_name text-success"></text><br>
+											<label class="text-light mt-2">Device Data:</label><br>
+											<text class="device_data text-success"></text><br>
+											<label class="text-light mt-2">Mac ID:</label><br>
+											<text class="mac_id text-success"></text><br>
+											<label class="text-light mt-2">Time Stamp:</label><br>
+											<text class="time_stamp device_data text-success"></text><br>
+											<label class="text-light mt-2">Forwarding Number</label><br>
+											<text class="forwarding device_data text-success mb-2"></text><br>
+			
+									</div>
+							<!-- </div> -->
+					<!-- </div> -->
 			</div>
 		</div>
 	</div>
 </body>
+<script src="static/admin.js"></script>
+<script>
+	$('.report').on('click', function(){
+		console.log('test')
+		$('.explore_body').addClass('d-none')
+		$('.home_body').addClass('d-none')
+		$('.report_body').removeClass('d-none')
+	})
+	$('.home').on('click', function(){
+		console.log('test2')
+		$('.home_body').removeClass('d-none')
+		$('.explore_body').addClass('d-none')
+		$('.report_body').addClass('d-none')
+	})
+	$('.explore').on('click', function(){
+		console.log('test2')
+		$('.explore_body').removeClass('d-none')
+		$('.home_body').addClass('d-none')
+		$('.report_body').addClass('d-none')
+	})
+</script>
 </html>
