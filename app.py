@@ -82,6 +82,10 @@ def logout():
     session['logged_in'] = False
     return home()
 
+@app.route("/admin_home")
+def admin_home():
+    return render_template('admin_home.html')
+
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
     app.run(debug=True, host='0.0.0.0', port=9988)
